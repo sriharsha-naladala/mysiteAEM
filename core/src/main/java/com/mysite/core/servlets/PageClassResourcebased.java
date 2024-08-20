@@ -33,6 +33,7 @@ public class PageClassResourcebased extends SlingAllMethodsServlet {
         }
         ResourceResolver resourceResolver = request.getResourceResolver();
         PageManager pageManager = resourceResolver.adaptTo(PageManager.class);
+        assert pageManager != null;
         Page page = pageManager.getPage(pagepath);
 
         Iterator<Page> childPages = page.listChildren();
