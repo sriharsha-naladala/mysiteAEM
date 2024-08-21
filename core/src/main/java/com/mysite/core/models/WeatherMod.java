@@ -25,6 +25,12 @@ import javax.annotation.PostConstruct;
 public class WeatherMod {
 
     private static final Logger Log = LoggerFactory.getLogger(WeatherMod.class);
+//
+//    @RequestParameter(name = "lat")
+//    private String lat;
+//
+//    @RequestParameter(name = "lon")
+//    private String lon;
 
     @ValueMapValue
     private String lat;

@@ -11,13 +11,14 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.apache.sling.servlets.annotations.SlingServletPaths;
-import org.jetbrains.annotations.NotNull;
+//import org.jetbrains.annotations.NotNull;
 import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import java.io.IOException;
 import java.time.Instant;
 import java.time.ZoneId;
@@ -32,7 +33,7 @@ public class WeatherLat extends SlingAllMethodsServlet {
     private static final String API_URL = "https://api.openweathermap.org/data/2.5/weather?lat=%s&lon=%s&appid=%s&units=imperial";
 
     @Override
-    public void doGet(@NotNull SlingHttpServletRequest request, @NotNull SlingHttpServletResponse response) throws ServletException, IOException {
+    public void doGet( SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
         String latitude = request.getParameter("lat");
         String longitude = request.getParameter("lon");
 
@@ -93,6 +94,7 @@ public class WeatherLat extends SlingAllMethodsServlet {
 
                 response.setContentType("application/json");
                 response.getWriter().write(jsonResponseObj.toString());
+                response.sendRedirect("");
             } catch (Exception e) {
                 Log.error("Error fetching weather data", e);
                 response.sendError(SlingHttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Unable to fetch weather data.");

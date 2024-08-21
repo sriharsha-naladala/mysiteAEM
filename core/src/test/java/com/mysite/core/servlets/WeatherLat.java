@@ -9,7 +9,6 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
-import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.apache.sling.servlets.annotations.SlingServletPaths;
 import org.jetbrains.annotations.NotNull;
@@ -24,7 +23,7 @@ import java.io.IOException;
 @Component(service = Servlet.class)
 @SlingServletPaths("/bin/weatherdata")
 public class WeatherLat extends SlingAllMethodsServlet {
-    private static final Logger Log = LoggerFactory.getLogger(WeatherLat.class);
+    private static final Logger Log = LoggerFactory.getLogger(Servnode.class);
 
     private static final String API_KEY = "b2414ba1e88d59ea74dd45ec33b4614a"; // Replace with your actual API key
     private static final String API_URL = "https://api.openweathermap.org/data/2.5/weather?lat=%s&lon=%s&appid=%s&units=imperial";

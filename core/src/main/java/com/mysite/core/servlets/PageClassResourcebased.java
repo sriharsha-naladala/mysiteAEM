@@ -50,3 +50,4 @@ public class PageClassResourcebased extends SlingAllMethodsServlet {
 
     }
 }
+

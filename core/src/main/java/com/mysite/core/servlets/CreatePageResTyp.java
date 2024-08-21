@@ -16,7 +16,7 @@ import javax.servlet.ServletException;
 import java.io.IOException;
 import java.util.Objects;
 
-@Component(service = { Servlet.class })
+@Component(service = Servlet.class)
 @SlingServletResourceTypes(resourceTypes = "mysite/components/page", extensions = "html",selectors = "createPage")
 public class CreatePageResTyp extends SlingSafeMethodsServlet {
 
