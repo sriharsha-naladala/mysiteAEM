@@ -94,7 +94,7 @@ public class WeatherLat extends SlingAllMethodsServlet {
 
                 response.setContentType("application/json");
                 response.getWriter().write(jsonResponseObj.toString());
-                response.sendRedirect("");
+
             } catch (Exception e) {
                 Log.error("Error fetching weather data", e);
                 response.sendError(SlingHttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Unable to fetch weather data.");
