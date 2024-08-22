@@ -23,7 +23,7 @@ import java.util.Map;
 @Component(service = Servlet.class)
 @SlingServletResourceTypes(
         resourceTypes = "mysite/components/page",
-        selectors = {"add", "customsub"},
+        selectors = "allpageproperties",
         extensions = {"txt", "json", "xml"}
 )
 public class PageClassResourceBased extends SlingAllMethodsServlet {
@@ -49,17 +49,17 @@ public class PageClassResourceBased extends SlingAllMethodsServlet {
             job.add("Title", next.getTitle());
             job.add("path", next.getPath());
 
-            // Retrieve the jcr:content resource of the page
+            // for Retrieving the jcr:content resource of the page
             Resource contentResource = next.getContentResource();
             if (contentResource != null) {
                 // Get all properties of the jcr:content node
                 Map<String, Object> properties = contentResource.getValueMap();
 
-                // Iterate over properties and add them to the JSON object
+                // Iterating over properties and add them to the JSON object
                 for (Map.Entry<String, Object> entry : properties.entrySet()) {
                     String key = entry.getKey();
                     Object value = entry.getValue();
-                    job.add(key, value != null ? value.toString() : "");
+                    job.add(key,value.toString());  //job.add(key, value != null ? value.toString() : "");
                 }
             }
 
