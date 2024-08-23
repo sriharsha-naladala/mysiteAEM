@@ -1,0 +1,38 @@
+<sly data-sly-use.author="com.mysite.core.models.Tempclas"/>
+<div class="weather-card">
+    <div class="weather-top">
+        <div class="weather-icon">
+            <img id="weather-icon" src="http://openweathermap.org/img/w/${author.icon}.png" alt="Weather Icon">
+        </div>
+        <div class="weather-info">
+            <h2 id="location-name">${author.placename}</h2>
+            <p id="temperature">${author.Temperature}°F</p>
+            <p id="weather-description">${author.Description}</p>
+        </div>
+    </div>
+    <div class="weather-bottom">
+        <div class="weather-detail">
+            <p>Feels Like</p>
+            <span id="feels-like">${author.feelslike}°F</span>
+        </div>
+        <div class="weather-detail">
+            <p>Humidity</p>
+            <span id="humidity">${author.Humidity}%</span>
+        </div>
+        <div class="weather-detail">
+            <p>Wind</p>
+            <span id="wind-speed">${author.speed} mph</span>
+        </div>
+        <div class="weather-detail">
+            <p>Pressure</p>
+            <span id="pressure">${author.pressure} hPa</span>
+        </div>
+        <div class="weather-detail">
+            <p>Cloudiness</p>
+            <span id="cloudiness">${author.cloudiness}%</span>
+        </div>
+    </div>
+</div>
+
+
+

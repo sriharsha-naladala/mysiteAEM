@@ -10,6 +10,8 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.apache.sling.servlets.annotations.SlingServletResourceTypes;
 import org.osgi.service.component.annotations.Component;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
@@ -26,6 +28,7 @@ import java.util.Map;
         extensions = {"txt", "json", "xml"}
 )
 public class PropertiesofComp extends SlingAllMethodsServlet {
+    public static final Logger log = LoggerFactory.getLogger(PropertiesofComp.class);
     @Override
     protected void doGet(@NotNull SlingHttpServletRequest request, @NotNull SlingHttpServletResponse response) throws IOException {
         String pagepath = request.getParameter("pagepath");
@@ -61,6 +64,7 @@ public class PropertiesofComp extends SlingAllMethodsServlet {
 
                     // Get all properties of the component
                     Map<String, Object> properties = componentResource.getValueMap();
+                    log.info("mapvalues "+properties);
                     for (Map.Entry<String, Object> entry : properties.entrySet()) {
                         String key = entry.getKey();
                         Object value = entry.getValue();

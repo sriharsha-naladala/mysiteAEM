@@ -11,32 +11,36 @@ import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 
-@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = {Resource.class, SlingHttpServletRequest.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class WeatherMod {
 
     private static final Logger Log = LoggerFactory.getLogger(WeatherMod.class);
 //
-//    @RequestParameter(name = "lat")
+
 //    private String lat;
 //
-//    @RequestParameter(name = "lon")
 //    private String lon;
+@SlingObject
+private SlingHttpServletRequest request;
 
-    @ValueMapValue
-    private String lat;
-
-    @ValueMapValue
-    private String longi;
+//    @ValueMapValue
+//    private String lat;
+//
+//    @ValueMapValue
+//    private String longi;
     @Self
     private Resource resource;
 
@@ -58,8 +62,12 @@ public class WeatherMod {
     private String time;
 
 
+
+
     @PostConstruct
     protected void init() {
+        String lat= request.getParameter("lat");
+        String lon = request.getParameter("lon");
         try {
             // Prepare credentials
             CredentialsProvider credsProvider = new BasicCredentialsProvider();
@@ -67,10 +75,9 @@ public class WeatherMod {
                     AuthScope.ANY,
                     new UsernamePasswordCredentials("admin", "admin") // Replace with actual username and password
             );
-
             try (CloseableHttpClient httpClient = HttpClients.custom().setDefaultCredentialsProvider(credsProvider).build()) {
                 // Construct the URL to call the servlet
-                String apiUrl = "http://localhost:6502/bin/weatherdata?lat="+lat+"&lon="+longi;
+                String apiUrl = "http://localhost:6502/bin/weatherdata?lat="+lat+"&lon="+lon;
 
                 HttpGet httpGet = new HttpGet(apiUrl);
                 HttpResponse httpResponse = httpClient.execute(httpGet);

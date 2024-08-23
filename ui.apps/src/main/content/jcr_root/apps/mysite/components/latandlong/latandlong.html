@@ -1,0 +1,88 @@
+
+<sly data-sly-use.weather="com.mysite.core.models.WeatherMod"></sly>
+<div class="body">
+<h1>Lat and Long</h1>
+    <div class="container1">
+
+<form action="" method="get">
+    <div>
+        <label for="lat">Latitude:</label>
+        <input type="text" id="latitude" name="lat" required>
+    </div>
+    <div>
+        <label for="lon">Longitude:</label>
+        <input type="text" id="longitude" name="lon" required>
+    </div>
+    <div>
+        <button id="getweather" type="submit">Get Weather</button>
+    </div>
+</form>
+
+        <div class="weather__header">
+            <button id="currentloc">current location</button>
+        </div>
+        <div class="weather__body">
+            <h1 class="weather__city"><span id="city">${weather.placeName}</span>, <span id="country" >${weather.country}</span></h1>
+            <div class="weather__datetime"><span id="date">${weather.date}</span>, <span>${weather.time}</span></div>
+
+			<p id="cli">${weather.climate},</p>
+            <p id="desc" class="weather__forecast">"${weather.description}"</p>
+            <div class="weather__icon">
+			<img id="icon" src="http://openweathermap.org/img/w/${weather.Icon}.png" alt="Weather Icon">
+            </div>
+            <p id="temp" class="weather__temperature">
+				${weather.temperature} °F </p>
+            <div class="weather__minmax">
+                <p id="mintemp">Min: ${weather.min}</p>
+                <p id="maxtemp">Max: ${weather.max}</p>
+            </div>
+
+
+        </div>
+
+		<div>
+			<p>Sunrise: <span id="sunrise">
+
+${weather.sunrise} AM</span></P>
+
+			<p>Sunset: <span id="sunset">${weather.sunset} PM</span></P>
+		</div>
+
+        <div class="weather__info">
+            <div class="weather__card">
+                <i class="fa-solid fa-temperature-full"></i>
+                <div>
+                    <p>Real Feel</p>
+                    <p id="feelslike" class="weather__realfeel">${weather.feelslike} °F</p>
+                </div>
+            </div>
+            <div class="weather__card">
+                <i class="fa-solid fa-droplet"></i>
+                <div>
+                    <p>Humidity</p>
+                    <p id="humid" class="weather__humidity">${weather.humidity} %</p>
+                </div>
+            </div>
+            <div class="weather__card">
+                <i class="fa-solid fa-wind"></i>
+                <div>
+                    <p>Wind</p>
+                    <p id="windspeed" class="weather__wind">${weather.windspeed} mph</p>
+                </div>
+            </div>
+            <div class="weather__card">
+                <i class="fa-solid fa-gauge-high"></i>
+                <div>
+                    <p>Pressure</p>
+                    <p id="pssure" class="weather__pressure">${weather.pressure} hPa</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://kit.fontawesome.com/a692e1c39f.js" crossorigin="anonymous"></script>
+
+
+
+
+
